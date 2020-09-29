@@ -14,12 +14,46 @@ Entrega a determinar por el profesor:
 * En el servidor VNC instalaremos `TightVNC -> Custom -> Server`. Esto es el servicio.
 * Revisar la configuración del cortafuegos del servidor VNC Windows para permitir VNC.
 
-![ ](instalacion tightvnc cliente.png)
+
+* Primero configuramos las máquinas virtuales, necesitamos dos máquinas de Windows 10m una será la esclava y otra la master. Las máquinas virtuales tienen las siguientes especificaciones:
+
+      * Configuración IP máquina Slave:
 
 
 
+![ ](11.png)
 
 
+
+          * Configuración IP máquina MASTER:
+
+
+![ ](12.png)
+
+
+    Ahora Desde la máquina Eslave vamos a descargar la herramienta 'TightVNC'
+
+![](1-1.png)
+
+
+    Y ahora procederemos a la instalación del programa.
+
+
+
+![](1.png)
+
+
+    Para la máquina Slave instalaremos la aplicación con la configuración de server.
+
+
+![](2.png)
+
+
+    Durante la instalación nos aparecerá una pantalla donde poner algunas medidas de seguridad,
+    vamos a configurarlo para que al conectarnos desde otro equipo nos pida una contraseña.
+
+
+![](3.png)
 
 
 
@@ -28,22 +62,61 @@ Entrega a determinar por el profesor:
 que los servicios son visibles desde fuera de la máquina VNC-SERVER. Deben verse los puertos 580X, 590X, etc.
 ---
 
-# 2 Windows: Master VNC
-* En el cliente Windows instalar `TightVNC -> Custom -> Viewer`.
-* Usaremos `TightVNC Viewer`. Esto es el cliente VNC.
-> **NOTA**
->
-> * Si usamos un servidor VNC "Marca-ACME", usar también el cliente "Marca-ACME".
-> * Para esta práctica usaremos conexiones SIN cifrar.
-> * Leer la documentación sobre conexiones VNC.
-> **Problemas de conexión**
->
-> * Refrescar las MAC de la MV.
-> * Revisar en la configuración del servidor VNC Windows las opciones de "Access Control".
+    Accedemos a una máquina Linux para comprobar los puertos VNC y que podamos realizar la conexión.
+
+![](7.png)
+
+
+
+# 2 Windows: Master VNC (máquina cliente)
+
+    En el cliente Windows instalar `TightVNC -> Custom -> Viewer`.
+
+
+![](4.png)
+
+
+
 ## 2.1 Comprobaciones finales
 
 Para verificar que se han establecido las conexiones remotas:
 * Conectar Window Master y GNU/Linux Mastar al Windows Slave.
-* Conectar desde Window Master hacia el Windows Slave.
+
+
+    Abrimos el programa TigthVNC Viewer ya que vamos a acceder como cliente al servidor.
+
+
+![](13.png)
+
+
+
+    Ahora vamos a conectarnos desde Window Master hacia el Windows Slave. Al iniciar el programa
+    nos aparecerá una ventana donde pondremos la IP de la máquina Slave y tambien nos solicitará
+    la contraseña que hemos puesto antes.
+
+
+![](6.png)
+
+
+     Al darle a conectar nos solicitará la clave que hemos puesto anteriormente para la
+     seguridad de las conexiones
+
+![](9.png)
+
+
 * Conectar desde GNU/Linux Master hacia el Windows Slave.
-* Ir al servidor VNC y usar el comando `netstat -n` para ver las conexiones VNC con el cliente.
+
+      Al darle a OK nos conectaremos con el equipo remoto del equipo Slave como se puede ver
+      nos aparece su escritorio completo y podemos acceder a sus archivos.
+
+
+![](10.png)
+
+
+
+
+    Ir al servidor VNC y usar el comando `netstat -n` para ver las conexiones VNC con el cliente.
+    Como se obserba en la imagen se ha establecido la conexión remota entre el equipo MASTER y el SLAVE.
+
+
+![](5.png)
