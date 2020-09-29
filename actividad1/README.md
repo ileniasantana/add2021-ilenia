@@ -14,7 +14,7 @@ Entrega a determinar por el profesor:
 * En el servidor VNC instalaremos `TightVNC -> Custom -> Server`. Esto es el servicio.
 * Revisar la configuración del cortafuegos del servidor VNC Windows para permitir VNC.
 
-![](instalacion custon tightvnc.png)
+![ ](instalacion custon tightvnc.png)
 
 
 
