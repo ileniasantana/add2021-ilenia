@@ -20,25 +20,25 @@
           * Configuración IP máquina MASTER:
 
 
-![ ](12.png)
+![ ](./images/12.png)
 
 
     Ahora Desde la máquina Slave vamos a descargar la herramienta 'TightVNC'
 
-![](1-1.png)
+![](./images/1-1.png)
 
 
     Y ahora procederemos a la instalación del programa.
 
 
 
-![](1.png)
+![](./images/1.png)
 
 
     Para la máquina Slave instalaremos la aplicación con la configuración de server.
 
 
-![](2.png)
+![](./images/2.png)
 
 
       Durante la instalación nos aparecerá una pantalla donde poner algunas medidas de
@@ -46,7 +46,7 @@
       una contraseña.
 
 
-![](3.png)
+![](./images/3.png)
 
 
 
@@ -57,7 +57,7 @@ que los servicios son visibles desde fuera de la máquina VNC-SERVER. Deben vers
 
     Accedemos a una máquina Linux para comprobar los puertos VNC y que podamos realizar la conexión.
 
-![](7.png)
+![](./images/7.png)
 
 
 
@@ -66,7 +66,7 @@ que los servicios son visibles desde fuera de la máquina VNC-SERVER. Deben vers
     En el cliente Windows instalar `TightVNC -> Custom -> Viewer`.
 
 
-![](4.png)
+![](./images/4.png)
 
 
 
@@ -79,7 +79,7 @@ Para verificar que se han establecido las conexiones remotas:
     Abrimos el programa TigthVNC Viewer ya que vamos a acceder como cliente al servidor.
 
 
-![](13.png)
+![](./images/13.png)
 
 
 
@@ -88,13 +88,13 @@ Para verificar que se han establecido las conexiones remotas:
     también nos solicitará la contraseña que hemos puesto antes.
 
 
-![](6.png)
+![](./images/6.png)
 
 
      Al darle a conectar nos solicitará la clave que hemos puesto anteriormente para la
      seguridad de las conexiones
 
-![](9.png)
+![](./images/9.png)
 
 
 * Conectar desde GNU/Linux Master hacia el Windows Slave.
@@ -103,7 +103,7 @@ Para verificar que se han establecido las conexiones remotas:
       nos aparece su escritorio completo y podemos acceder a sus archivos.
 
 
-![](10.png)
+![](./images/10.png)
 
 
 
@@ -115,4 +115,4 @@ Para verificar que se han establecido las conexiones remotas:
     equipo MASTER y el SLAVE.
 
 
-![](5.png)
+![](./images/5.png)
