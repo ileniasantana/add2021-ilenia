@@ -1,12 +1,4 @@
-# 0. Introducción VNC
-Entrega a determinar por el profesor:
-* (a) Correccción remota con TEUTON.
-* (b) Entrega informe por GIT.
-> En el caso de la entrega por GIT:
-> * URL con la ruta al archivo del informe dentro del repositorio del alumno.
-> * URl commit del repositorio con la versión entregada.
-> * Etiquetaremos la entrega en el repositorio Git con `vnc`.
-> * Capturar imágenes de la instalación y configuración VNC para poder acceder a una máquina remota.
+# Instalación y configuración de conexión remota VNC
 ---
 # 1. Windows: Slave VNC
 * Configurar las máquinas virtuales según este [documento](../../global/configuracion/).
@@ -15,7 +7,7 @@ Entrega a determinar por el profesor:
 * Revisar la configuración del cortafuegos del servidor VNC Windows para permitir VNC.
 
 
-* Primero configuramos las máquinas virtuales, necesitamos dos máquinas de Windows 10m una será la esclava y otra la master. Las máquinas virtuales tienen las siguientes especificaciones:
+* Primero configuramos las máquinas virtuales, necesitamos dos máquinas de Windows 10m una será la esclava y otra la Master. Las máquinas virtuales tienen las siguientes especificaciones:
 
       * Configuración IP máquina Slave:
 
@@ -31,7 +23,7 @@ Entrega a determinar por el profesor:
 ![ ](12.png)
 
 
-    Ahora Desde la máquina Eslave vamos a descargar la herramienta 'TightVNC'
+    Ahora Desde la máquina Slave vamos a descargar la herramienta 'TightVNC'
 
 ![](1-1.png)
 
@@ -49,8 +41,9 @@ Entrega a determinar por el profesor:
 ![](2.png)
 
 
-    Durante la instalación nos aparecerá una pantalla donde poner algunas medidas de seguridad,
-    vamos a configurarlo para que al conectarnos desde otro equipo nos pida una contraseña.
+      Durante la instalación nos aparecerá una pantalla donde poner algunas medidas de
+      seguridad, vamos a configurarlo para que al conectarnos desde otro equipo nos pida
+      una contraseña.
 
 
 ![](3.png)
@@ -90,9 +83,9 @@ Para verificar que se han establecido las conexiones remotas:
 
 
 
-    Ahora vamos a conectarnos desde Window Master hacia el Windows Slave. Al iniciar el programa
-    nos aparecerá una ventana donde pondremos la IP de la máquina Slave y tambien nos solicitará
-    la contraseña que hemos puesto antes.
+    Ahora vamos a conectarnos desde Window Master hacia el Windows Slave. Al iniciar
+    el programa nos aparecerá una ventana donde pondremos la IP de la máquina Slave y
+    también nos solicitará la contraseña que hemos puesto antes.
 
 
 ![](6.png)
@@ -115,8 +108,11 @@ Para verificar que se han establecido las conexiones remotas:
 
 
 
-    Ir al servidor VNC y usar el comando `netstat -n` para ver las conexiones VNC con el cliente.
-    Como se obserba en la imagen se ha establecido la conexión remota entre el equipo MASTER y el SLAVE.
+    Ir al servidor VNC y usar el comando `netstat -n` para ver las conexiones VNC con el
+
+    cliente. Como se observa en la imagen se ha establecido la conexión remota entre el
+
+    equipo MASTER y el SLAVE.
 
 
 ![](5.png)
