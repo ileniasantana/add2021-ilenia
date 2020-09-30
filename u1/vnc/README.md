@@ -9,7 +9,7 @@
 
 * Primero configuramos las máquinas virtuales, necesitamos dos máquinas de Windows 10m una será la esclava y otra la Master. Las máquinas virtuales tienen las siguientes especificaciones:
 
-      * Configuración IP máquina Slave:
+      Configuración IP máquina Slave:
 
 
 
@@ -17,7 +17,7 @@
 
 
 
-          * Configuración IP máquina MASTER:
+       Configuración IP máquina MASTER:
 
 
 ![ ](./images/12.png)
