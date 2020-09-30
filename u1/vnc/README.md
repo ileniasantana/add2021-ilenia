@@ -13,7 +13,7 @@
 
 
 
-![ ](./u1/vnc/images/11.png)
+![ ](./images/11.png)
 
 
 
