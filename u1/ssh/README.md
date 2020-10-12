@@ -85,7 +85,7 @@ Archivo de configuración de Windows cliente.
     * `systemctl status sshd`, esta es la forma habitual de comprobar los servicios.
     * `ps -ef|grep sshd`, esta es otra forma de comprobarlo mirando los procesos del sistema.
     * `sudo lsof -i:22`, comprobar que el servicio está escuchando por el puerto 22.
-    
+
 
   ![](./images/2-1-2.png)
 
@@ -94,26 +94,35 @@ Archivo de configuración de Windows cliente.
 
 ## 2.2 Primera conexión SSH desde cliente GNU/Linux
 
-* Ir al cliente `clientXXg`.
-* `ping serverXXg`, comprobar la conectividad con el servidor.
+* Ir al cliente `client16g2`.
+* `ping server16g`, comprobar la conectividad con el servidor.
 * `nmap -Pn serverXXg`, comprobar los puertos abiertos en el servidor (SSH debe estar open). Debe mostrarnos que el puerto 22 está abierto. Debe aparecer una línea como  "22/tcp open ssh". Si esto falla, debemos comprobar en el servidor la configuración del cortafuegos.
 
-![ssh-nmap](./opensuse/ssh-nmap.png)
+![](./images/2-2.png)
 
-> Existe una herramienta gráfica para nmap, llamada nmapfe
+Vamos a comprobar el funcionamiento de la conexión SSH desde cada cliente usando el usuario *santana1*.
+* Desde el cliente GNU/Linux nos conectamos mediante `ssh santana1@192.168.1.25`. Capturar imagen del intercambio de claves que se produce en el primer proceso de conexión SSH.
 
-Vamos a comprobar el funcionamiento de la conexión SSH desde cada cliente usando el usuario *1er-apellido-alumno1*.
-* Desde el cliente GNU/Linux nos conectamos mediante `ssh 1er-apellido-alumno1@serverXXg`. Capturar imagen del intercambio de claves que se produce en el primer proceso de conexión SSH.
+![](./images/2-2-1.png)
 
-![ssh-conexion1](./opensuse/ssh-conexion1.png)
 
-* A partir de ahora cuando nos conectamos sólo nos pide la contraseña:
 
-![ssh-conexion2](./opensuse/ssh-conexion2.png)
+
+
+
+
+
 
 * Comprobar contenido del fichero `$HOME/.ssh/known_hosts` en el equipo cliente. OJO el prompt nos indica en qué equipo estamos.
-* ¿Te suena la clave que aparece? Es la clave de identificación de la máquina del servidor.
+
+![](./images/2-2-2-2.png)
+
+
+* Es la clave de identificación de la máquina del servidor.
+* A partir de ahora cuando nos conectamos sólo nos pide la contraseña:
 * Una vez llegados a este punto deben de funcionar correctamente las conexiones SSH desde el cliente. Comprobarlo.
+
+![](./images/2-2-2.png)
 
 ## 2.3 Primera conexión SSH desde cliente Windows
 
@@ -162,28 +171,31 @@ Este parámetro define los ficheros de clave publica/privada que van a identific
 Vamos a cambiar o volver a generar nuevas claves públicas/privadas que identifican nuestro servidor.
 * Ir al servidor.
 * Como usuario root ejecutamos: `ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key`. ¡OJO! No poner password al certificado.
+
+![](./images/2-2-3.png)
+
+
+
 * Reiniciar el servicio SSH: `systemctl restart sshd`.
 * Comprobar que el servicio está en ejecución correctamente: `systemctl status sshd`
 
+![](./images/3-1-2.png)
+
 ## 3.2 Comprobamos
 
-* Comprobar qué sucede al volver a conectarnos desde los dos clientes, usando los  usuarios `1er-apellido-alumno2` y `1er-apellido-alumno1`. ¿Qué sucede?
+* Comprobar qué sucede al volver a conectarnos desde los dos clientes, usando los  usuarios `santana2` y `santana1`. ¿Qué sucede?
 
-> **Enlaces de interés**
->
-> Cliente SSH para Windows:
->
-> * [Learning Linux : Lesson 14 Using Public key Authentication with PuTTY ](https://youtu.be/xe599gD4b5E?list=PL3E447E094F7E3EBB)
->
-> Servicio SSH en Windows:
->
-> * [Tutorial FreeSShd](http://www.redeszone.net/windows/freesshd-para-windows-instalacion-y-manual-de-configuracion-de-freesshd-para-windows-servidor-ssh-y-sftp/)
-> * [Configuración de OpenSSH para Windows7 con SSH Cygwin +Putty](http://www.taringa.net/post/linux/15562479/Configuracion-de-OpenSSH-en-Windows-7-SSH-Cygwin-Putty.html)
-> * [Installing Cygwin and Starting the SSH Daemon](http://docs.oracle.com/cd/E24628_01/install.121/e22624/preinstall_req_cygwin_ssh.htm#EMBSC150)
-> * En Windows, la información relativa a los know_hosts, se almacena en el registro. En la ruta `CURRENT_USER/Software/SimonTaham/Putty/SSHHostKeys`. Para acceder al registro ejecutamos el comando `regedit`.
+cliente opensuse cliente a servidor.
+![](./images/3-2-1.png)
 
-* Para solucionarlo... lee los mensajes de advertencia. ¡Ahí está todo lo que necesitas!
+Intentamos acceder con santana1 y santana2 desde cliente windows y, nos parece un mensaje de advertencia de que no está el registro del host guardado, por lo que ya tenemos que estar alerta pero, sin embargo si damos a SI, que queremos continuar nos deja acceder.
+![](./images/2-3-2.png)
 
+Nos avisa, pero nos deja conectarnos, por tanto no dispone de tanta seguridad como en el caso anterior.
+![](./images/2-3-3.png)
+
+
+* Para solucionarlo lo único que debemos hacer es entrar al fichero known_hosts y volver a dejarlo como estaba anteriormente.
 ---
 # 4. Personalización del prompt Bash
 
