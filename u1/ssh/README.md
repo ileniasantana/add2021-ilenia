@@ -261,31 +261,57 @@ Comprobación desde cliente Windows
 
 **Explicación:**
 
-El objetivo de este apartado es el de configurar SSH para poder acceder desde el `clientXXg` sin necesidad de escribir la clave. Usaremos un par de claves pública/privada.
+El objetivo de este apartado es el de configurar SSH para poder acceder desde el `client16g2g` sin necesidad de escribir la clave. Usaremos un par de claves pública/privada.
 
 Para ello, vamos a configurar la autenticación mediante clave pública para acceder con nuestro usuario personal desde el equipo cliente al servidor con el usuario `1er-apellido-alumno4`. Vamos a verlo.
 
 **Práctica**
 
 Capturar imágenes de los siguientes pasos:
-* Vamos a la máquina `clientXXg`.
+* Vamos a la máquina `client16g2g`.
 * **¡OJO! No usar el usuario root**.
-* Iniciamos sesión con nuestro el usuario **nombre-alumno** de la máquina `clientXXg`.
+* Iniciamos sesión con nuestro el usuario **nombre-alumno** de la máquina `client16g2g`.
 * `ssh-keygen -t rsa` para generar un nuevo par de claves para el usuario en:
-    * `/home/nombre-alumno/.ssh/id_rsa`
-    * `/home/nombre-alumno/.ssh/id_rsa.pub`
+    * `/home/santana16g2/.ssh/id_rsa`
+    * `/home/santana16g2/.ssh/id_rsa.pub`
+
+![](./images/5-1.png)
+
+
+
+
+
+
 * Ahora vamos a copiar la clave pública (`id_rsa.pub`), al fichero "authorized_keys" del usuario remoto *1er-apellido-alumno4* que está definido en el servidor.
     * Hay varias formas de hacerlo.
-    * El modo recomendado es usando el comando `ssh-copy-id`. Ejemplo para copiar la clave pública del usuario actual al usuario remoto en la máquina remota: `ssh-copy-id 1er-apellido-alumno4@serverXXg`.
+    * El modo recomendado es usando el comando `ssh-copy-id`. Ejemplo para copiar la clave pública del usuario actual al usuario remoto en la máquina remota: `ssh-copy-id santana4@server16g`.
 
-> Otra forma de hacerlo sería usando el programa de copia segura `scp`.
->
-> * Comprobar que existe el directorio `/home/1er-apellido-alumno4/.ssh` en el servidor.
-> * Copiamos el fichero `.ssh/id_rsa.pub` local al fichero `.ssh/authorized_keys` del usuario remoto en la máquina remota.
+![](./images/5-2.png)
+
+
+
+
+
+
+
 
 * Comprobar que ahora al acceder remotamente vía SSH
-    * Desde `clientXXg`, NO se pide password.
-    * Desde `clientXXw`, SI se pide el password.
+    * Desde `client16g2`, NO se pide password.
+    * Desde `cliente16w1`, SI se pide el password.
+
+Desde el cliente opensuse accedemos y, no nos solicita clave.
+
+![](./images/5-3-3.png)
+
+
+
+
+
+
+Desde el cliente windows si que nos pide la clave.
+
+![](./images/5-3-4.png)
+
 
 ---
 # 6. Uso de SSH como túnel para X
