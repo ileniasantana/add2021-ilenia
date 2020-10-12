@@ -2,52 +2,28 @@
 
 # Acceso remoto SSH
 
-Ejemplo de rúbrica:
-
-| Criterios             | Muy bien (2) | Regular (1) | Poco adecuado (0) |
-| --------------------- | ------------ | ----------- | ----------------- |
-| (2.2) Primera conexión SSH GNU/Linux       | | | |
-| (3.2) Comprobar cambio clave servidor SSH  | | | |
-| (5  ) Autenticación mediante clave pública | | | |
-| (6  ) Uso de SSH como túnel para X         | | | |
-| (8.1) Restricción sobre un usuario         | | |. |
-| (9) Servidor SSH en Windows                | | |. |
-
-## Introducción
-
-* Atender a la explicación del profesor.
-* Leer documentación proporcionada por el profesor.
-
-Enlaces de interés:
-* [Aumentar la seguridad servidor SSH](http://rm-rf.es/como-securizar-un-servidor-ssh/)
-* [Hardening SSH](https://linux-audit.com/audit-and-harden-your-ssh-configuration)
-* http://en.wikipedia.org/wiki/: Secure_Shell,VNC, NX_technology, Remote_Desktop_Protocol, Remote_Desktop_Services, X_Window_System_protocols_and_architecture, Comparison_of_remote_desktop_software
-
-Entrega:
-* Añadir informe al repositorio git. Etiqueta `ssh`.
-* Incluir capturas de pantalla de cada apartado para confirmar que está funcionando.
-* Además se mostrará al profesor la práctica funcionando en clase y se responderá a las preguntas que pudieran hacerse en dicho instante.
-
----
 # 1. Preparativos
 
 Vamos a necesitar las siguientes MVs:
 
 | Función | Sistema Operativo     | IP        | Hostname |
 | ------- |--------------------- | --------- | --------- |
-| Un servidor SSH| GNU/Linux OpenSUSE (Sin entorno gráfico)| 172.AA.XX.31 | serverXXg |
-| Un cliente SSH | GNU/Linux OpenSUSE | 172.AA.XX.32 | clientXXg |
-| Un servidor SSH | Windows Server| 172.AA.XX.11 | serverXXs |
-| Un cliente SSH | Windows | 172.AA.XX.12 | clienteXXw |
+| Un servidor SSH| GNU/Linux OpenSUSE (Sin entorno gráfico)| 192.168.1.25 | server16g |
+| Un cliente SSH | GNU/Linux OpenSUSE | 192.168.1.30 | client16g |
+| Un servidor SSH | Windows Server| 192.168.1.x | serverXXs |
+| Un cliente SSH | Windows | 192.168.1.31 | clienteXXw |
 
 ## 1.1 Servidor SSH
 
-* Configurar el servidor GNU/Linux con siguientes valores:
-    * SO GNU/Linux: OpenSUSE - Sin entorno gráfico.
-    * Nombre de equipo: `serverXXg`
-    * [Configuración de las MV's](../../global/configuracion/opensuse.md)
-    * Poner clave compleja al usuario root.
-* Añadir en `/etc/hosts` los equipos `clientXXg` y `clientXXw` (Donde XX es el puesto del alumno).
+* Añadir en `/etc/hosts` los equipos `client16g2` y `clientXXw` (Donde XX es el puesto del alumno).
+
+Archivo de configuración del servidor.
+![](./images/archivoconfiguración.png)
+
+
+
+
+
 * Para comprobar los cambios ejecutamos varios comandos. Capturar imagen:
 ```
 ip a               # Comprobar IP, máscara y nombre interfaz de red
@@ -59,12 +35,13 @@ ping clientXXw     # Comprobar conectividad con cliente Windows
 lsblk              # Consultar particiones
 blkid              # Consultar UUID de la instalación
 ```
+Se han realizado todas las comprobaciones y, vemos que todo funciona correctamente.
 
-Crear los siguientes usuarios en `serverXXg`:
-* primer-apellido-del-alumno1
-* primer-apellido-del-alumno2
-* primer-apellido-del-alumno3
-* primer-apellido-del-alumno4
+Crear los siguientes usuarios en `server16g`:
+* santana1
+* santana2
+* santana3
+* santana4
 
 ## 1.2 Cliente GNU/Linux
 
@@ -75,50 +52,45 @@ Crear los siguientes usuarios en `serverXXg`:
 * Añadir en `/etc/hosts` los equipos serverXXg, y clientXXw.
 * Comprobar haciendo ping a ambos equipos.
 
+Archivo de configuración cliente OpenSUSE.
+![](./images/1-5.png)
+
+
 ## 1.3 Cliente Windows
 
 * Instalar software cliente SSH en Windows. Para este ejemplo usaremos [PuTTY](http://www.putty.org/).
-* Configurar el cliente2 Windows con los siguientes valores:
-    * SO Windows
-    * Nombre de equipo: `clientXXw`
-    * [Configuración de las MV's](../../global/configuracion/windows.md)
-* Añadir en `C:\Windows\System32\drivers\etc\hosts` los equipos serverXXg y clientXXg.
-* Comprobar haciendo `ping` a ambos equipos.
 
----
+* Vamos a configurar el cliente2 Windows con los siguientes valores:
+    * SO Windows
+    * Nombre de equipo: `cliente16w`
+* Añadir en `C:\Windows\System32\drivers\etc\hosts` los equipos server16 y cliente16g1.
+* se ha realizado ping a ambas máquinas server16 y cliente opensuse con éxito.
+
+Archivo de configuración de Windows cliente.
+![](./images/13-2.png)
+
+
+
 # 2 Instalación del servicio SSH
 
-* Instalar el servicio SSH en la máquina serverXXg. Por comandos o entorno gráfico.
+* Instalar el servicio SSH en la máquina server16g. Por comandos o entorno gráfico.
 
-> Enlaces de interés:
->
-> * [Vídeo: Instalación y configuración de un servidor SSH en Windows Server](http://www.youtube.com/embed/QlqokjKt69I)
->
-> Instalación de SSH:
->
-> * Desde la herramienta `yast -> Instalar Software`
-> * Desde terminal `zypper search openssh` muestra los paquetes instalados o no con nombre openssh*.
-> * Desde terminal `zypper install openssh`, instala el paquete OpenSSH.
->
-> Configuración:
->
-> * Los ficheros de configuración del servicio se guardan en /etc/ssh.
+![](./images/2-1.png)
+
+
 
 ## 2.1 Comprobación
 
 * Desde el propio servidor, verificar que el servicio está en ejecución.
     * `systemctl status sshd`, esta es la forma habitual de comprobar los servicios.
     * `ps -ef|grep sshd`, esta es otra forma de comprobarlo mirando los procesos del sistema.
+    * `sudo lsof -i:22`, comprobar que el servicio está escuchando por el puerto 22.
+    
 
-![servicio-sshd](./opensuse/servicio-sshd.png)
+  ![](./images/2-1-2.png)
 
-![servicio-sshd-yast](./opensuse/servicio-sshd-yast.png)
 
-> Para poner el servicio enable, si no lo estuviera.:
->  * `systemctl enable sshd` por comandos
->  * `Yast -> servicios` por entorno gráfico
 
-* `sudo lsof -i:22`, comprobar que el servicio está escuchando por el puerto 22.
 
 ## 2.2 Primera conexión SSH desde cliente GNU/Linux
 
