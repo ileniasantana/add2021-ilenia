@@ -199,7 +199,7 @@ Nos avisa, pero nos deja conectarnos, por tanto no dispone de tanta seguridad co
 ---
 # 4. Personalización del prompt Bash
 
-* Por ejemplo, podemos añadir las siguientes líneas al fichero de configuración del `1er-apellido-alumno1` en la máquina servidor (Fichero `/home/1er-apellido-alumno1/.bashrc`)
+* Por ejemplo, podemos añadir las siguientes líneas al fichero de configuración del `santana1` en la máquina servidor (Fichero `/home/1er-apellido-alumno1/.bashrc`)
 
 ```
 # Se cambia el prompt al conectarse vía SSH
@@ -211,7 +211,10 @@ else
 fi
 ```
 
-* Además, crear el fichero el fichero `/home/1er-apellido-alumno1/.alias`,
+![](./images/4-1.png)
+
+
+* Además, crear el fichero el fichero `/home/santana1/.alias`,
 donde pondremos el siguiente contenido:
 
 ```
@@ -222,7 +225,19 @@ alias v='vdir -cFl'
 alias s='ssh'
 ```
 
+![](./images/4-2.png)
+
+
 * Comprobar funcionamiento de la conexión SSH desde cada cliente.
+
+Comprobación desde cliente OpenSUSE
+![](./images/4-3.png)
+
+
+Comprobación desde cliente Windows
+![](./images/4-3-1-1.png)
+
+
 
 ---
 # 5. Autenticación mediante claves públicas
