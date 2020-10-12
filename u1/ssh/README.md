@@ -220,7 +220,9 @@ else
 fi
 ```
 
+
 ![](./images/4-1.png)
+
 
 
 * Además, crear el fichero el fichero `/home/santana1/.alias`,
@@ -234,16 +236,22 @@ alias v='vdir -cFl'
 alias s='ssh'
 ```
 
+
 ![](./images/4-2.png)
 
 
 * Comprobar funcionamiento de la conexión SSH desde cada cliente.
 
 Comprobación desde cliente OpenSUSE
+
+
 ![](./images/4-3.png)
 
 
 Comprobación desde cliente Windows
+
+
+
 ![](./images/4-3-1-1.png)
 
 
