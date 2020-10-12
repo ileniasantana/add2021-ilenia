@@ -53,6 +53,7 @@ Crear los siguientes usuarios en `server16g`:
 * Comprobar haciendo ping a ambos equipos.
 
 Archivo de configuración cliente OpenSUSE.
+
 ![](./images/1-5.png)
 
 
