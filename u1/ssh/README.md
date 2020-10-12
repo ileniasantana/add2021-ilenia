@@ -187,12 +187,20 @@ Vamos a cambiar o volver a generar nuevas claves públicas/privadas que identifi
 * Comprobar qué sucede al volver a conectarnos desde los dos clientes, usando los  usuarios `santana2` y `santana1`. ¿Qué sucede?
 
 cliente opensuse cliente a servidor.
+
+
 ![](./images/3-2-1.png)
 
+
 Intentamos acceder con santana1 y santana2 desde cliente windows y, nos parece un mensaje de advertencia de que no está el registro del host guardado, por lo que ya tenemos que estar alerta pero, sin embargo si damos a SI, que queremos continuar nos deja acceder.
+
+
 ![](./images/2-3-2.png)
 
+
 Nos avisa, pero nos deja conectarnos, por tanto no dispone de tanta seguridad como en el caso anterior.
+
+
 ![](./images/2-3-3.png)
 
 
