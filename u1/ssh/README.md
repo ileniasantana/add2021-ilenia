@@ -308,7 +308,7 @@ Desde el cliente opensuse accedemos y, no nos solicita clave.
 
 
 
-Desde el cliente windows si que nos pide la clave.
+Desde el cliente windows si que nos solicita la clave.
 
 ![](./images/5-3-4.png)
 
