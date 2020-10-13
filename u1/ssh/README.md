@@ -316,22 +316,57 @@ Desde el cliente windows si que nos solicita la clave.
 ---
 # 6. Uso de SSH como túnel para X
 
-![tunel](./images/ssh-tunel.jpeg)
-
-> Enlaces de interés:
->
-> * http://dustwell.com/how-x-over-ssh-really-works.html
-> * http://www.vanemery.com/Linux/XoverSSH/X-over-SSH2.html
 
 * Instalar en el servidor una aplicación de entorno gráfico (APP1) que no esté en los clientes. Por ejemplo Geany. Si estuviera en el cliente entonces buscar otra aplicación o desinstalarla en el cliente.
+
+Vamos a instalar en el servidor la aplicación Geany, vamos a comprobar que no está instalada en la máquina cliente opensuse.
+
+Como se observa en la imagen no está instalada.
+
+![](./images/6-1.png)
+
+
+
+
 * Modificar servidor SSH para permitir la ejecución de aplicaciones gráficas, desde los clientes. Consultar fichero de configuración `/etc/ssh/sshd_config` (Opción `X11Forwarding yes`)
 * Reiniciar el servicio SSH para que se lean los cambios de configuración.
 
+
+![](./images/6-3.png)
+
+
+![](./images/6-4.png)
+
+
+
+
 Vamos a clientXXg.
 * `zypper se APP1`,comprobar que no está instalado el programa APP1.
+
+![](./images/6-5.png)
+
+
+
+
 * Vamos a comprobar desde clientXXg, que funciona APP1(del servidor).
-    * `ssh -X primer-apellido-alumno1@serverXXg`, nos conectamos de forma remota al servidor, y ahora ejecutamos APP1 de forma remota.
+    * `ssh -X santana1@serverXXg`, nos conectamos de forma remota al servidor, y ahora ejecutamos APP1 de forma remota.
     * **¡OJO!** El parámetro es `-X` en mayúsculas, no minúsculas.
+    
+
+
+
+![](./images/6-6.png)
+
+
+
+
+
+Cómo se puede ver se abre Geany gráficamente desde el servidor, ya que en nuestro equipo no está instalado.
+
+![](./images/6-7.png)
+
+
+
 
 ---
 # 7. Aplicaciones Windows nativas
