@@ -9,9 +9,9 @@ Vamos a necesitar las siguientes MVs:
 | Función | Sistema Operativo     | IP        | Hostname |
 | ------- |--------------------- | --------- | --------- |
 | Un servidor SSH| GNU/Linux OpenSUSE (Sin entorno gráfico)| 192.168.1.25 | server16g |
-| Un cliente SSH | GNU/Linux OpenSUSE | 192.168.1.30 | client16g |
-| Un servidor SSH | Windows Server| 192.168.1.x | serverXXs |
-| Un cliente SSH | Windows | 192.168.1.31 | clienteXXw |
+| Un cliente SSH | GNU/Linux OpenSUSE | 192.168.1.30 y 172.19.99.220 | client16g |
+| Un servidor SSH | Windows Server| 172.19.99.100 | serverXXs |
+| Un cliente SSH | Windows | 192.168.1.31 y 172.19.99.200 | clienteXXw |
 
 ## 1.1 Servidor SSH
 
@@ -351,7 +351,7 @@ Vamos a clientXXg.
 * Vamos a comprobar desde clientXXg, que funciona APP1(del servidor).
     * `ssh -X santana1@serverXXg`, nos conectamos de forma remota al servidor, y ahora ejecutamos APP1 de forma remota.
     * **¡OJO!** El parámetro es `-X` en mayúsculas, no minúsculas.
-    
+
 
 
 
@@ -415,45 +415,68 @@ Vamos a crear una restricción de permisos sobre determinadas aplicaciones.
     * SO Windows Server
     * Nombre de equipo: `serverXXs`
     * [Configuración de las MV's](../../global/configuracion/windows-server.md)
+
 * Añadir en `C:\Windows\System32\drivers\etc\hosts` el equipo clientXXg y clientXXw.
+
+
+
+![](./images/9-1.png)
+
+
 * Comprobar haciendo ping a ambos equipos.
 * [Instalar y configurar el servidor SSH en Windows](../../global/acceso-remoto/windows-ssh.md).
-    * Elegir la opción que se quiera: OpenSSH o integrado.
+    * Elegir la opción que se quiera: OpenSSH.
     * Documentar el proceso de instalación y configuración.
+
+![](./images/9-2.png)
+
+
+
+
+![](./images/9-3.png)
+
+
+
+
+![](./images/9-5.png)
+
+
+![](./images/9-6.png)
+
+![](./images/9-7.png)
+
+
+![](./images/9-8.png)
+
+
+
+
+
 * Comprobar acceso SSH desde los clientes Windows y GNU/Linux al servidor SSH Windows.
     * `netstat -n` en Windows.
     * `lsof -i -n` en GNU/Linux.
 
----
-# ANEXO A
 
-# Setup Passwordless SSH Login for Multiple Remote Servers Using Script
 
-https://www.tecmint.com/passwordless-ssh-login-for-multiple-remote-servers/
 
-## SSH cipher
+![](./images/opensuse2.png)
 
-https://answers.launchpad.net/ubuntu/+source/openssh/+question/669164
 
-## Túnel Inverso SSH - mundohackers
 
-* [Cómo hacer un túnel inverso SSH](https://mundo-hackers.weebly.com/tuacutenel-inverso-ssh.html#)
-* [Un bruto con Debian: Tunel inverso SSH](https://unbrutocondebian.blogspot.com/2013/08/tunel-inverso-ssh.html?m=1)
 
-## Trabajo colaborativo usando SSH
 
-Podemos seguir esta recomendación para que varias personas trabajen en la misma máquina.
 
-Supongamos que tenemos 2 máquinas llamadas MV1 y MV2.
-* En MV1 instalamos el servidor SSH.
-* En MV1 tenemos los usuarios usu1 y usu2.
-* Desde MV2 para conectarse a MV1 debemos hacer: ssh usu2@ip-mv1. Con esto abrimos sesión en MV1 desde MV2 y podemos trabajar desde MV2.
 
-Si queremos abrir una sesión remota pero gráfica podemos hacer en MV2:
-* ssh -X usu2@ip-mv1 (Es es para abrir la sesión. Establecer contacto)
-* nautilus (Con esto abrimos un explorador en MV1 pero desde MV2)
-* Si tenemos el programa LibreOffice instalado en MV1, pero no en MV2... podemos conectarnos con ssh -X, y luego ejecutar... /usr/lib/libreoffice/program/soffice.bin, y ya está. Esto es trabajo remoto.
+![](./images/opensuse1.png)
 
-Si queremos copiar archivo de MV2 hacia MV1 hacemos:
-* scp file usu2@ip-m1:/home/usu2, Ya está!
-* Si además queremos iniciar una sesión sftp hacemos: sftp usu2@ip-m1
+
+
+
+
+
+
+
+![](./images/9-9.png)
+
+
+![](./images/9-10.png)
