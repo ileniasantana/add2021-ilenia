@@ -1,5 +1,3 @@
-# add2021-ilenia
-
 # Acceso remoto SSH
 
 # 1. Preparativos
@@ -10,8 +8,8 @@ Vamos a necesitar las siguientes MVs:
 | ------- |--------------------- | --------- | --------- |
 | Un servidor SSH| GNU/Linux OpenSUSE (Sin entorno gráfico)| 192.168.1.25 | server16g |
 | Un cliente SSH | GNU/Linux OpenSUSE | 192.168.1.30 y 172.19.99.220 | client16g |
-| Un servidor SSH | Windows Server| 172.19.99.100 | serverXXs |
-| Un cliente SSH | Windows | 192.168.1.31 y 172.19.99.200 | clienteXXw |
+| Un servidor SSH | Windows Server| 172.19.99.100 | server16g |
+| Un cliente SSH | Windows | 192.168.1.31 y 172.19.99.200 | cliente16w |
 
 ## 1.1 Servidor SSH
 
@@ -21,20 +19,6 @@ Archivo de configuración del servidor.
 ![](./images/archivoconfiguración.png)
 
 
-
-
-
-* Para comprobar los cambios ejecutamos varios comandos. Capturar imagen:
-```
-ip a               # Comprobar IP, máscara y nombre interfaz de red
-ip route           # Comprobar puerta de enlace
-ping 8.8.4.4 -i 2  # Comprobar conectividad externa
-host www.nba.com   # Comprobar el servidor DNS
-ping clientXXg     # Comprobar conectividad con cliente GNU/Linux
-ping clientXXw     # Comprobar conectividad con cliente Windows
-lsblk              # Consultar particiones
-blkid              # Consultar UUID de la instalación
-```
 Se han realizado todas las comprobaciones y, vemos que todo funciona correctamente.
 
 Crear los siguientes usuarios en `server16g`:
@@ -48,7 +32,7 @@ Crear los siguientes usuarios en `server16g`:
 * Configurar el cliente1 GNU/Linux con los siguientes valores:
     * SO OpenSUSE
     * [Configuración de las MV's](../global/configuracion/opensuse.md)
-    * Nombre de equipo: `clientXXg`
+    * Nombre de equipo: `client16g2`
 * Añadir en `/etc/hosts` los equipos serverXXg, y clientXXw.
 * Comprobar haciendo ping a ambos equipos.
 
@@ -144,25 +128,6 @@ Esto es, ¿Y si cambiamos las claves del servidor? ¿Qué pasa?
 que identifican a nuestro servidor frente a nuestros clientes. Confirmar que existen
 el en `/etc/ssh`,:
 
-```
-david@server42g:~> cd /etc/ssh/
-david@server42g:/etc/ssh> ll
-total 576
--rw-r--r-- 1 root root   2375 oct  1 08:15 ldap.conf
--rw------- 1 root root 535929 oct  1 08:15 moduli
--rw-r--r-- 1 root root   2586 oct  1 08:15 ssh_config
--rw-r----- 1 root root   3776 oct  1 08:15 sshd_config
--rw------- 1 root root    668 jun 28 09:55 ssh_host_dsa_key
--rw-r--r-- 1 root root    610 jun 28 09:55 ssh_host_dsa_key.pub
--rw------- 1 root root    227 jun 28 09:55 ssh_host_ecdsa_key
--rw-r--r-- 1 root root    182 jun 28 09:55 ssh_host_ecdsa_key.pub
--rw------- 1 root root    411 jun 28 09:55 ssh_host_ed25519_key
--rw-r--r-- 1 root root    102 jun 28 09:55 ssh_host_ed25519_key.pub
--rw------- 1 root root    985 jun 28 09:55 ssh_host_key
--rw-r--r-- 1 root root    650 jun 28 09:55 ssh_host_key.pub
--rw------- 1 root root   1679 jun 28 09:55 ssh_host_rsa_key
--rw-r--r-- 1 root root    402 jun 28 09:55 ssh_host_rsa_key.pub
-```
 
 * Modificar el fichero de configuración SSH (`/etc/ssh/sshd_config`) para dejar una única línea: `HostKey /etc/ssh/ssh_host_rsa_key`. Comentar el resto de líneas con configuración HostKey.
 Este parámetro define los ficheros de clave publica/privada que van a identificar a nuestro servidor. Con este cambio decimos que sólo se van a utilizar las claves del tipo RSA.
@@ -321,7 +286,8 @@ Desde el cliente windows si que nos solicita la clave.
 
 Vamos a instalar en el servidor la aplicación Geany, vamos a comprobar que no está instalada en la máquina cliente opensuse.
 
-Como se observa en la imagen no está instalada.
+Como se observa en la imagen no está instalada la aplicación geany en el cliente OpenSUSE.
+
 
 ![](./images/6-1.png)
 
@@ -351,7 +317,6 @@ Vamos a clientXXg.
 * Vamos a comprobar desde clientXXg, que funciona APP1(del servidor).
     * `ssh -X santana1@serverXXg`, nos conectamos de forma remota al servidor, y ahora ejecutamos APP1 de forma remota.
     * **¡OJO!** El parámetro es `-X` en mayúsculas, no minúsculas.
-
 
 
 
@@ -388,13 +353,46 @@ Vamos a modificar los usuarios del servidor SSH para añadir algunas restriccion
 
 Vamos a crear una restricción de uso del SSH para un usuario:
 
-* En el servidor tenemos el usuario `primer-apellido2`. Desde local en el servidor podemos usar sin problemas el usuario.
+* En el servidor tenemos el usuario `santana2`. Desde local en el servidor podemos usar sin problemas el usuario.
 * Vamos a modificar SSH de modo que al usar el usuario por SSH desde los clientes tendremos permiso denegado.
 
 Capturar imagen de los siguientes pasos:
 * Consultar/modificar fichero de configuración del servidor SSH (`/etc/ssh/sshd_config`) para restringir el acceso a determinados usuarios. Consultar las opciones `AllowUsers`, `DenyUsers` (Más información en: `man sshd_config`)
+
+En el fichero vamos a denegar la entrada al usuario santana2.
+
+![](./images/8-2.png)
+
+
+
+
+
 * `/usr/sbin/sshd -t; echo $?`, comprobar si la sintaxis del fichero de configuración del servicio SSH es correcta (Respuesta 0 => OK, 1 => ERROR).
+
+
+
+![](./images/8-2-2-2-2.png)
+
+
+
 * Comprobarlo la restricción al acceder desde los clientes.
+
+Pruebo a entrar con el usuario denegado y, como se observa al poner el password, no me sale error alguno, simlemente entra en buche y no me acepta el password y, no podemos entrar con el usuario santana2.
+
+
+
+
+
+![](./images/8-2-2.png)
+
+
+
+
+Al intentar acceder desde el cliente windows desde Putty si que nos aparece el acceso como denegado para el usuario santana2.
+
+
+![](./images/8-2-2-2.png)
+
 
 ## 8.2 Restricción sobre una aplicación
 
@@ -411,39 +409,55 @@ Vamos a crear una restricción de permisos sobre determinadas aplicaciones.
 ---
 # 9. Servidor SSH en Windows
 
-* Configurar el servidor Windows con los siguientes valores:
-    * SO Windows Server
-    * Nombre de equipo: `serverXXs`
-    * [Configuración de las MV's](../../global/configuracion/windows-server.md)
-
-* Añadir en `C:\Windows\System32\drivers\etc\hosts` el equipo clientXXg y clientXXw.
+* Voy a configurar el Windows server 16 con el servicio OpenSSH, para ello primero voy a añadir en `C:\Windows\System32\drivers\etc\hosts` el equipo client16g2 y client16w.
 
 
 
 ![](./images/9-1.png)
 
 
-* Comprobar haciendo ping a ambos equipos.
-* [Instalar y configurar el servidor SSH en Windows](../../global/acceso-remoto/windows-ssh.md).
-    * Elegir la opción que se quiera: OpenSSH.
-    * Documentar el proceso de instalación y configuración.
+Descargamos el archivo OpenSSH-Win64.zip desde la página web y, debemos descomprimirlo sobre la siguiente ruta: C:\archivos de programa\OpenSSH
+
+
 
 ![](./images/9-2.png)
 
 
 
+Abrimos un terminal power shell como administrador y, vamos a la ruta anterior C:\archivos de programa\OpenSSH para ejecutar la configuración e instalación del servicio.
+
+
+Cambiamos las políticas de ejecución de los scripts para poder instalarlo.
 
 ![](./images/9-3.png)
 
 
 
+Nos movemos dentro de la carpeta donde está el archivo sshd.ps1 y, procedemos a la instalación mediante el comando .\install-sshd.ps1 y se procede a su instalación.
+Con el comando Get-Service encendemos el servicio de ssh.
+
+Luego pedimos que nos genere claves para ssh con ssh-keygen.exe
 
 ![](./images/9-5.png)
 
 
+
+
+
+Añadimos una nueva regla para el SSH
 ![](./images/9-6.png)
 
+
+
+
+Añadimos los servicios sshd y ssh-agent para que se inicien de forma automçatica cuando inicie el equipo.
+Y luego activamos el servicio Start-Service sshd.
+
 ![](./images/9-7.png)
+
+
+
+Voy a configurar el intérprete de comandos (Shell) que se ejecutará cuando nos conectemos de forma remota al servidor SSH en Windows.
 
 
 ![](./images/9-8.png)
@@ -453,19 +467,23 @@ Vamos a crear una restricción de permisos sobre determinadas aplicaciones.
 
 
 * Comprobar acceso SSH desde los clientes Windows y GNU/Linux al servidor SSH Windows.
-    * `netstat -n` en Windows.
-    * `lsof -i -n` en GNU/Linux.
 
 
 
 
-![](./images/opensuse2.png)
+Accedemos con la ip del servidor windows desde el cliente Opensuse y, vemos que se conecta sin problemas.
+
+ssh Administrador@172.19.99.100
+
+![](./images/9-10.png)
 
 
 
 
 
+* `netstat -n` en Windows.
 
+Observamos cómo hay una conexión activa entre el servidor 172.19.99.100 y el cliente OpenSUSE 172.19.99.200.
 
 ![](./images/opensuse1.png)
 
@@ -474,9 +492,14 @@ Vamos a crear una restricción de permisos sobre determinadas aplicaciones.
 
 
 
-
+Aquí hago la conexión de entre el cliente windows con ip 172.19.99.220 y el servidor 172.19.99.100 y, vemos que se realiza la conexión sin problemas.
 
 ![](./images/9-9.png)
 
 
+
+
+
+
+Se observan ambas Ip's la del cliente 172.19.99.220 y la 172.19.99.100 del servidor.
 ![](./images/9-10.png)
