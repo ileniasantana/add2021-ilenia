@@ -284,12 +284,10 @@ Desde el cliente windows si que nos solicita la clave.
 
 * Instalar en el servidor una aplicación de entorno gráfico (APP1) que no esté en los clientes. Por ejemplo Geany. Si estuviera en el cliente entonces buscar otra aplicación o desinstalarla en el cliente.
 
-Vamos a instalar en el servidor la aplicación Geany, vamos a comprobar que no está instalada en la máquina cliente opensuse.
-
-Como se observa en la imagen no está instalada la aplicación geany en el cliente OpenSUSE.
+Vamos a instalar en el servidor la aplicación Geany, como se observa la aplicación está instalada en el servidor.
 
 
-![](./images/6-1.png)
+![](./images/6-2.png)
 
 
 
@@ -384,6 +382,8 @@ En el fichero vamos a denegar la entrada al usuario santana2.
 
 Pruebo a entrar con el usuario denegado y, como se observa al poner el password, no me sale error alguno, simlemente entra en buche y no me acepta el password y, no podemos entrar con el usuario santana2.
 
+Sin embargo he probado también con los usuarios santana1 y santana3 y vemos que si podemos acceder con esos usuarios.
+
 
 
 
@@ -394,6 +394,7 @@ Pruebo a entrar con el usuario denegado y, como se observa al poner el password,
 
 
 Al intentar acceder desde el cliente windows desde Putty si que nos aparece el acceso como denegado para el usuario santana2.
+
 
 
 ![](./images/8-2-2-2.png)
@@ -480,7 +481,7 @@ Accedemos con la ip del servidor windows desde el cliente Opensuse y, vemos que 
 
 ssh Administrador@172.19.99.100
 
-![](./images/9-10.png)
+![](./images/opensuse2.png)
 
 
 
