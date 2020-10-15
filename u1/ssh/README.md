@@ -301,21 +301,26 @@ Como se observa en la imagen no está instalada la aplicación geany en el clien
 ![](./images/6-3.png)
 
 
+
+Activamos reiniciamos el servicio y miramos su estado para ver que está activo.
+
+
+
 ![](./images/6-4.png)
 
 
 
 
-Vamos a clientXXg.
-* `zypper se APP1`,comprobar que no está instalado el programa APP1.
+Vamos a client16g2 y con * `zypper se geany`,comprobamos que no está instalado el programa geany.
 
-![](./images/6-5.png)
+
+![](./images/geany.png)
 
 
 
 
 * Vamos a comprobar desde clientXXg, que funciona APP1(del servidor).
-    * `ssh -X santana1@serverXXg`, nos conectamos de forma remota al servidor, y ahora ejecutamos APP1 de forma remota.
+    * `ssh -X santana1@server16g`, nos conectamos de forma remota al servidor, y ahora ejecutamos APP1 de forma remota.
     * **¡OJO!** El parámetro es `-X` en mayúsculas, no minúsculas.
 
 
