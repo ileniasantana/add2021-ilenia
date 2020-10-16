@@ -13,7 +13,7 @@ Vamos a necesitar las siguientes MVs:
 
 ## 1.1 Servidor SSH
 
-* Añadir en `/etc/hosts` los equipos `client16g2` y `clientXXw` (Donde XX es el puesto del alumno).
+* Añadir en `/etc/hosts` los equipos `client16g2` y `clientXXw` (Donde 16 es el puesto del alumno).
 
 Archivo de configuración del servidor.
 ![](./images/archivoconfiguración.png)
