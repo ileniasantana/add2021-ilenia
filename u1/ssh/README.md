@@ -13,7 +13,7 @@ Vamos a necesitar las siguientes MVs:
 
 ## 1.1 Servidor SSH
 
-* Añadir en `/etc/hosts` los equipos `client16g2` y `clientXXw` (Donde XX es el puesto del alumno).
+* Añadir en `/etc/hosts` los equipos `client16g2` y `clientXXw` (Donde 16 es el puesto del alumno).
 
 Archivo de configuración del servidor.
 ![](./images/archivoconfiguración.png)
@@ -58,7 +58,7 @@ Archivo de configuración de Windows cliente.
 
 # 2 Instalación del servicio SSH
 
-* Instalar el servicio SSH en la máquina server16g. Por comandos o entorno gráfico.
+* Instalar el servicio SSH en la máquina server16g1 por comandos o entorno gráfico.
 
 ![](./images/2-1.png)
 
@@ -118,6 +118,21 @@ Vamos a comprobar el funcionamiento de la conexión SSH desde cada cliente usand
 * Una vez llegados a este punto deben de funcionar correctamente las conexiones SSH desde el cliente. Comprobarlo.
 * La siguiente vez que volvamos a usar PuTTY ya no debe aparecer el mensaje de advertencia porque hemos memorizado la identificación del servidor SSH. Comprobarlo.
 
+![](./images/2-3-1.png)
+
+
+
+![](./images/2-3-2.png)
+
+
+
+
+![](./images/2-3-3.png)
+
+
+
+
+
 ---
 # 3. Cambiamos la identidad del servidor
 
@@ -127,6 +142,7 @@ Esto es, ¿Y si cambiamos las claves del servidor? ¿Qué pasa?
 * Los ficheros `ssh_host*key` y `ssh_host*key.pub`, son ficheros de clave pública/privada
 que identifican a nuestro servidor frente a nuestros clientes. Confirmar que existen
 el en `/etc/ssh`,:
+
 
 
 * Modificar el fichero de configuración SSH (`/etc/ssh/sshd_config`) para dejar una única línea: `HostKey /etc/ssh/ssh_host_rsa_key`. Comentar el resto de líneas con configuración HostKey.
@@ -411,6 +427,26 @@ Vamos a crear una restricción de permisos sobre determinadas aplicaciones.
 * Poner los permisos del ejecutable de APP1 a 750. Para impedir que los usuarios que no pertenezcan al grupo puedan ejecutar el programa.
 * Comprobamos el funcionamiento en el servidor en local.
 * Comprobamos el funcionamiento desde el cliente en remoto (Recordar `ssh -X ...`).
+
+He creado los usuarios utilizando Yast2.
+
+
+
+
+![](./images/8-2si2.png)
+
+
+
+Damos los permisos 750 a la aplicación geany.
+
+![](./images/8-2si3.png)
+
+
+
+
+
+
+
 
 ---
 # 9. Servidor SSH en Windows
