@@ -1,0 +1,13 @@
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /                       btrfs  defaults                      0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /var                    btrfs  subvol=/@/var                 0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /usr/local              btrfs  subvol=/@/usr/local           0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /tmp                    btrfs  subvol=/@/tmp                 0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /srv                    btrfs  subvol=/@/srv                 0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /root                   btrfs  subvol=/@/root                0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /opt                    btrfs  subvol=/@/opt                 0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /home                   btrfs  subvol=/@/home                0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /boot/grub2/x86_64-efi  btrfs  subvol=/@/boot/grub2/x86_64-efi  0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /boot/grub2/i386-pc     btrfs  subvol=/@/boot/grub2/i386-pc  0  0
+UUID=4c1c82b2-ffb3-4ccd-bf9d-64bc4dad5b92  /.snapshots             btrfs  subvol=/@/.snapshots          0  0
+UUID=0accf0ee-1a61-4de3-96bd-ec25de9dd215  swap                    swap   defaults                      0  0
+//192.168.1.16/castillo			   /mnt/remoto16/castillo  cifs   _netdev,username=soldado1,password=ilenia84,dir_mode=0077,uid=500,gid=500   0   0	

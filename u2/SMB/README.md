@@ -421,11 +421,15 @@ debemos configurar el fichero `/etc/fstab`. Veamos un ejemplo:
 * Reiniciar el equipo y comprobar que se realiza el montaje automático al inicio.
 
 
-![](/images/suse/32.png)
+![](./images/suse/32.png)
 
 
 
 * Incluir contenido del fichero `/etc/fstab` en la entrega.
+
+![](./images/fstab.png)
+
+
 
 
 ---
