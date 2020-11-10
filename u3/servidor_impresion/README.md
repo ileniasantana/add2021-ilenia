@@ -8,7 +8,14 @@
 * Vamos al servidor
 * Instalar rol/función de servidor de impresión. Incluir impresión por Internet.
 
-> DUDA: Instalar rol/función de cliente de impresión por Internet.
+![](./images/7.png)
+
+
+
+![](./images/8.png)
+
+
+![](./images/11.png)
 
 ## 1.2 Instalar impresora PDF
 
@@ -23,7 +30,7 @@ PDFCreator es una utilidad completamente gratuita con la que podrás crear archi
 * Descargar PDFCreator (URL recomendada `www.pdfforge.org/pdfcreator/download`) e instalar.
 * En PDFCreator, configurar en `perfiles -> Guardar -> Automático`. Ahí establecemos la carpeta destino.
 
-> NOTA: PDFCreator puede requerir NET FrameWork v4.
+
 
 ## 1.3 Probar la impresora en local
 
@@ -107,12 +114,6 @@ Vamos al cliente:
 
 
 
-> **INFO**: Para **buscar archivos** (Por ejemplo PDF) dentro de Windows podemos usar las funcionar de [buscar](https://www.islabit.com/10080/una-mejor-forma-de-buscar-archivos-en-windows-7.html)
-
-
-
-
-
 
 ---
 
@@ -179,6 +180,9 @@ Vamos a realizar seguidamente una prueba sencilla en tu impresora de red:
 ![](./images/mueva13.png)
 
 
+Aquí se ven las dos impresoras y, vamos a imprimir en la nueva creada impresora_ilenia16.
+
+![](./images/nueva14.png)
 
 
 
@@ -188,7 +192,7 @@ Vamos a realizar seguidamente una prueba sencilla en tu impresora de red:
 * Ir a MV cliente.
 * Probar la impresora remota imprimiendo documento `imprimir16w-web`.
 
-![](./images/29.png)
+![](./images/nueva8.png)
 
 
 
@@ -197,32 +201,19 @@ Vamos a realizar seguidamente una prueba sencilla en tu impresora de red:
 
   * Comprobar que al estar la impresora en pausa, el trabajo aparece en cola de impresión.
 
-![](./images/30.png)
+![](./images/nueva9.png)
+
+
+Aquí se observa que está en pausa una de las dos impresoras.
+
+![](images/nueva10.png)
 
 
 * Finalmente pulsa en reanudar el trabajo para que tu documento se convierta a PDF.
 
-![](./images/31.png)
+![](./images/nueva11.png)
 
 
+También había realizado el ejercicio con la impresora creada l primera vez, es por ello que aparecen varios archivos, el archivo imprimir16w-web2 es el archivo último para impromir en la impresora creada Impresora-ilenia16.
 
-* Si tenemos problemas para que aparezca el PDF en el servidor, iniciar el
-programa PDFCreator y esperar un poco.
-
-![](./images/32.png)
-
-> **Si hay problemas** para acceder a la impresora de red desde el cliente Windows entonces:
->
-> * Revisar la configuración de red de la máquina (Incluido la puerta de enlace)
-> * Reiniciar el servidor Windows Server que contiene la impresora compartida de red.
-
----
-
-# ANEXO: Colas de impresión en el servidor
-
-```
-NO HAY QUE HACER ESTE APARTADO
-Sólo consultar el vídeo
-```
-* [Configurar cola de impresión con dos impresoras iguales](https://www.youtube.com/watch?v=mYWEEv1RdZs).
-* Configurar colas/usuarios/prioridades.
+![](images/nueva12.png)
