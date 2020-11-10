@@ -1,19 +1,5 @@
 # Servidor de Impresión en Windows
 
-Ejemplo de rúbrica:
-
-| Sección               | Muy bien (2) | Regular (1) | Poco adecuado (0) |
-| --------------------- | ------------ | ----------- | ----------------- |
-| (1.3) Comprobar que se imprime de forma local  | | | |
-| (2.2) Comprobar que se imprime de forma remota | | | |
-| (3.3) Comprobar que se imprime desde el navegador | | | |
-
-
-Necesitaremos 2 MV:
-* MV1: Windows Server
-* MV2: Windows 7/10 cliente
-
----
 
 # 1. Impresora compartida
 
@@ -30,13 +16,7 @@ Vamos a conectar e instalar localmente una impresora al servidor Windows Server,
 
 En nuestro caso, dado que es posible de que no tengan una impresora física en casa y no es de mucho interés forzar la instalación de una impresora que no se tiene, vamos a instalar un programa que simule una impresora de PDF.
 
-> [Enlaces de interés:](http://www3.gobiernodecanarias.org/medusa/eforma/campus/mod/page/view.php?id=748283)
->
-> * [Impresoras virtuales PDF](http://www.genbeta.com/herramientas/impresoras-virtuales-pdf-tres-alternativas-gratuitas-en-espanol)
-> * PDF Creator
-> * pdf24
-> * doPDF: www.dopdf.com/es/
-> * BullZIP PDF Printer: http://www.bullzip.com/products/pdf/info.php#Introduction
+
 
 PDFCreator es una utilidad completamente gratuita con la que podrás crear archivos PDF desde cualquier aplicación, desde el Bloc de notas hasta Word, Excel, etc. Este programa funciona simulando ser una impresora, de esta forma, instalando PDFCreator todas tus aplicaciones con opción para imprimir te permitirán crear archivos PDF en cuestión de segundos.
 
