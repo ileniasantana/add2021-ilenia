@@ -29,9 +29,14 @@ la información del enlace anterior publicado por Jonathan Wiesel, el 16/07/2013
 * Instalar Vagrant. La instalación vamos a hacerla en una máquina real.
 * Hay que comprobar que las versiones de Vagrant y VirtualBox son compatibles entre sí.
     * `vagrant version`, para comprobar la versión actual de Vagrant.
+
+![](./images/2-1-1.png)
+
+
     * `VBoxManage -v`, para comprobar la versión actual de VirtualBox.
 
----
+
+
 # 3. Proyecto Celtics
 
 ## 3.1 Imagen, caja o box
@@ -41,21 +46,26 @@ Existen muchos repositorios desde donde podemos descargar la cajas de Vagrant (I
 > OJO: Sustituir **BOXNAME** por `ubuntu/bionic64`
 
 * `vagrant box add BOXNAME`, descargar la caja que necesitamos a través de vagrant.
+
+
+
+
 * `vagrant box list`, lista las cajas/imágenes disponibles actualmente en nuestra máquina.
 
-```
-> vagrant box list
-BOXNAME (virtualbox, 0)
-```
+![](./images/3-2-1.png)
+
 
 ## 3.2 Directorio
 
 * Crear un directorio para nuestro proyecto. Donde XX es el número de cada alumno:
 
 ```
-mkdir vagrantXX-celtics
-cd vagrantXX-celtics
+mkdir vagrant16-celtics
+cd vagrant16-celtics
 ```
+
+![](./images/3-2-2.png)
+
 
 A partir de ahora vamos a trabajar dentro de esta carpeta.
 * Crear el fichero `Vagrantfile` de la siguiente forma:
@@ -66,6 +76,9 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox"
 end
 ```
+
+![](./images/3-2-5.png)
+
 
 > NOTA: Con `vagrant init` se crea un fichero `Vagrantfile` con las opciones por defecto.
 
@@ -84,6 +97,10 @@ Vamos a crear una MV nueva y la vamos a iniciar usando Vagrant:
 
 
 ![](./images/3-3-3.png)
+
+
+
+![](./images/3-2-6.png)
 
 > **Otros comandos últiles de Vagrant son**:
 > * `vagrant suspend`: Suspender la máquina virtual. Tener en cuenta que la MV en modo **suspendido** consume más espacio en disco debido a que el estado de la máquina virtual que suele almacenarse en la RAM se pasa a disco.
@@ -139,13 +156,33 @@ Ahora vamos a hacer otro proyecto añadiendo redirección de puertos.
 
 ## 5.1 Creamos proyecto Hawks
 
-* Crear carpeta `vagrantXX-hawks`. Entrar en el directorio.
+* Crear carpeta `vagrant16-hawks`. Entrar en el directorio.
+
+![](./images/5-1-1.png)
+
 * Crear proyecto Vagrant.
-* Configurar Vagrantfile para usar nuestra caja BOXNAME y hostname = "nombre-alumnoXX-hawks".
+* Configurar Vagrantfile para usar nuestra caja BOXNAME y hostname = "ilenia16-hawks".
+
 * Modificar el fichero `Vagrantfile`, de modo que el puerto 4567 del sistema anfitrión sea enrutado al puerto 80 del ambiente virtualizado.
+
+
+![](./images/5-2-3.png)
+
+
+
   * `config.vm.network :forwarded_port, host: 4567, guest: 80`
+
+![](./images/5-2-4.png)
+
+
 * `vagrant ssh`, entramos en la MV
+
+
 * Instalamos apache2.
+
+
+
+![](./images/5-2-6.png)
 
 > NOTA: Cuando la MV está iniciada y queremos recargar el fichero de configuración si ha cambiado hacemos `vagrant reload`.
 
@@ -178,7 +215,7 @@ Una de los mejores aspectos de Vagrant es el uso de herramientas de suministro. 
 ## 6.1 Proyecto Lakers (Suministro mediante shell script)
 
 Ahora vamos a suministrar a la MV un pequeño script para instalar Apache.
-* Crear directorio `vagrantXX-lakers` para nuestro proyecto.
+* Crear directorio `vagrant16-lakers` para nuestro proyecto.
 
 ![](./images/6-1-1.png)
 
@@ -224,7 +261,7 @@ Incluir en el fichero de configuración `Vagrantfile` lo siguiente:
 
 
 Se pide hacer lo siguiente.
-* Crear directorio `vagrantXX-raptors` como nuevo proyecto Vagrant.
+* Crear directorio `vagrant16-raptors` como nuevo proyecto Vagrant.
 
 
 ![](./images/6-2-1.png)
@@ -241,7 +278,7 @@ Se pide hacer lo siguiente.
 > Cuando usamos `config.vm.provision "shell", inline: '"echo "Hola"'`, se ejecuta directamente el comando especificado en la MV. Es lo que llamaremos provisión inline.
 
 * Crear la carpeta `manifests`. OJO: un error muy típico es olvidarnos de la "s" final.
-* Crear el fichero `manifests/nombre-del-alumnoXX.pp`, con las órdenes/instrucciones Puppet necesarias para instalar el software que elijamos (Cambiar `PACKAGENAME` por el paquete que queramos).
+* Crear el fichero `manifests/nombre-del-alumno16.pp`, con las órdenes/instrucciones Puppet necesarias para instalar el software que elijamos (Cambiar `PACKAGENAME` por el paquete que queramos).
 
 
 ![](./images/6-3-4.png)
@@ -292,13 +329,36 @@ Vamos a crear el usuario `vagrant`. Esto lo hacemos para poder acceder a la máq
 * Crear el usuario `vagrant`en la MV.
     * `su`
     * `useradd -m vagrant`
+
+
+![](./images/7-1-1.png)
+
+
+
 * Poner clave "vagrant" al usuario vagrant.
+
 * Poner clave "vagrant" al usuario root.
+
+
+![](./images/7-1-4.png)
+
+
+
 * Configuramos acceso por clave pública al usuario `vagrant`:
-    * `mkdir -pm 700 /home/vagrant/.ssh`, creamos la carpeta de configuración SSH.
-    * `wget --no-check-certificate 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub' -O /home/vagrant/.ssh/authorized_keys`, descargamos la clave pública.
+* `mkdir -pm 700 /home/vagrant/.ssh`, creamos la carpeta de configuración SSH.
+
+* `wget --no-check-certificate 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub' -O /home/vagrant/.ssh/authorized_keys`, descargamos la clave pública.
+
+
+![](./images/7-1-5.png)
+
+
+
     * `chmod 0600 /home/vagrant/.ssh/authorized_keys`, modificamos los permisos de la carpeta.
     * `chown -R vagrant /home/vagrant/.ssh`, modificamos el propietario de la carpeta.
+
+![](./images/7-1-7.png)
+
 
 > NOTA:
 > * Podemos cambiar los parámetros de configuración del acceso SSH. Mira la teoría...
@@ -309,6 +369,11 @@ Vamos a crear el usuario `vagrant`. Esto lo hacemos para poder acceder a la máq
 Tenemos que conceder permisos al usuario `vagrant` para que pueda hacer tareas privilegiadas como configurar la red, instalar software, montar carpetas compartidas, etc. Para ello debemos configurar el fichero `/etc/sudoers` (Podemos usar el comando `visudo`) para que no nos solicite la password de root, cuando realicemos estas operaciones con el usuario `vagrant`.
 
 * Añadir `vagrant ALL=(ALL) NOPASSWD: ALL` al fichero de configuración `/etc/sudoers`. Comprobar que no existe una linea indicando requiretty si existe la comentamos.
+
+
+![](./images/7-1-8.png)
+
+
 
 **Añadir las VirtualBox Guest Additions**
 
@@ -323,7 +388,7 @@ version:        6.0.24
 
 Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
-* Vamos a crear una nueva carpeta `vagrantXX-bulls`, para este nuevo proyecto vagrant.
+* Vamos a crear una nueva carpeta `vagrant16-bulls`, para este nuevo proyecto vagrant.
 
 
 ![](./images/7-2-8.png)
@@ -335,7 +400,7 @@ Una vez hemos preparado la máquina virtual ya podemos crear el box.
 
 
 * Nos aseguramos que la MV de VirtualBox VMNAME está apagada.
-* `vagrant package --base VMNAME --output nombre-alumnoXX.box`, parar crear nuestra propia caja.
+* `vagrant package --base VMNAME --output nombre-alumno16.box`, parar crear nuestra propia caja.
 
 
 ![](./images/7-2-2.png)
@@ -350,7 +415,7 @@ Una vez hemos preparado la máquina virtual ya podemos crear el box.
 ![](./images/7-2-4.png)
 
 
-* `vagrant box add nombre-alumno/bulls nombre-alumnoXX.box`, añadimos la nueva caja creada por nosotros, al repositorio local de cajas vagrant de nuestra máquina.
+* `vagrant box add nombre-alumno/bulls nombre-alumno16.box`, añadimos la nueva caja creada por nosotros, al repositorio local de cajas vagrant de nuestra máquina.
 
 
 ![](./images/7-2-2.png)
