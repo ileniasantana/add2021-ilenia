@@ -111,7 +111,7 @@ Comandos útiles de Docker:
 
 ## 1.4 Alias
 
-Para ayudarnos a trabajar de forma más rápida con la línea de comandos podemos agregar los siguientes alias al fichero `/home/nombre-alumno/.alias`:
+Para ayudarnos a trabajar de forma más rápida con la línea de comandos podemos agregar los siguientes alias al fichero `/home/ilenia/.alias`:
 
 ```
 alias di='docker images'
@@ -192,7 +192,7 @@ root@IDContenedor:/# apt-get install -y vim   # Instalamos editor vi en el conte
 **Crear un fichero HTML** `holamundo1.html`.
 
 ```
-root@IDContenedor:/# echo "<p>Hola nombre-del-alumno</p>" > /var/www/html/holamundo1.html
+root@IDContenedor:/# echo "<p>Hola ilenia</p>" > /var/www/html/holamundo1.html
 ```
 
 
@@ -235,7 +235,7 @@ done
 Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos vamos a crear una nueva imagen que incluya los cambios que hemos hecho.
 
 * Abrir otra ventana de terminal.
-* `docker commit app1debian nombre-del-alumno/nginx1`, a partir del CONTAINERID vamos a crear la nueva imagen que se llamará "nombre-del-alumno/nginx1".
+* `docker commit app1debian ilenia/nginx1`, a partir del CONTAINERID vamos a crear la nueva imagen que se llamará "nombre-del-alumno/nginx1".
 
 * `docker images`, comprobamos que se ha creado la nueva imagen.
 
@@ -263,7 +263,7 @@ Ya tenemos nuestro contenedor auto-suficiente de Nginx, ahora debemos vamos a cr
 ## 3.1 Crear contenedor con Nginx
 
 Ya tenemos una imagen "dvarrui/nginx" con Nginx instalado.
-* `docker run --name=app2nginx1 -p 80 -t dvarrui/nginx1 /root/server.sh`, iniciar el contenedor a partir de la imagen anterior.
+* `docker run --name=app2nginx1 -p 80 -t ilenia/nginx1 /root/server.sh`, iniciar el contenedor a partir de la imagen anterior.
 
 
 ![](./images/3.1/3-1-1.png)
@@ -289,7 +289,7 @@ Ya tenemos una imagen "dvarrui/nginx" con Nginx instalado.
 ![](./images/3.1/3-1-3.png)
 
 
-![docker-url-nginx.png](./images/docker-url-nginx.png)
+
 
 * Comprobar el acceso a `holamundo1.html`.
 
@@ -332,7 +332,7 @@ Intercambiar nuestra imagen exportada con la de un compañero de clase.
 **Importar** imagen Docker desde fichero:
 * Coger la imagen de un compañero de clase.
 * Nos llevamos el tar a otra máquina con docker instalado, y restauramos.
-* `docker load -i alumnoXXdocker.tar`, cargamos la imagen docker a partir del fichero tar. Cuando se importa una imagen se muestra en pantalla las capas que tiene. Las capas las veremos en un momento.
+* `docker load -i alumno16docker.tar`, cargamos la imagen docker a partir del fichero tar. Cuando se importa una imagen se muestra en pantalla las capas que tiene. Las capas las veremos en un momento.
 
 
 ![](./images/3.3/3-3-1.png)
@@ -383,7 +383,7 @@ usando un fichero de configuración. Esto es, vamos a crear un contenedor a part
 
 ## 4.1 Preparar ficheros
 
-* Crear directorio `/home/nombre-alumno/docker16a`.
+* Crear directorio `/home/ilenia/docker16a`.
 
 
 ![](./images/4.1/4-1-1.png)
@@ -391,7 +391,7 @@ usando un fichero de configuración. Esto es, vamos a crear un contenedor a part
 
 * Entrar el directorio anterior.
 * Crear fichero `holamundo2.html` con:
-    * Proyecto: dockerXXa
+    * Proyecto: docker16a
     * Autor: Nombre del alumno
     * Fecha: Fecha actual
 
@@ -404,7 +404,7 @@ usando un fichero de configuración. Esto es, vamos a crear un contenedor a part
 ```
 FROM debian
 
-MAINTAINER nombre-del-alumnoXX 1.0
+MAINTAINER nombre-del-alumno16 1.0
 
 RUN apt-get update
 RUN apt-get install -y apt-utils
@@ -436,7 +436,7 @@ CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 El fichero Dockerfile contiene toda la información necesaria para construir el contenedor, veamos:
 
 * `cd docker16a`, entramos al directorio con el Dockerfile.
-* `docker build -t nombre-alumno/nginx2 .`, construye una nueva imagen a partir del Dockerfile. OJO: el punto final es necesario.
+* `docker build -t ilenia/nginx2 .`, construye una nueva imagen a partir del Dockerfile. OJO: el punto final es necesario.
 
 
 ![](./images/4.2/4-2-1.png)
@@ -454,7 +454,7 @@ El fichero Dockerfile contiene toda la información necesaria para construir el 
 A continuación vamos a crear un contenedor con el nombre `app4nginx2`, a partir de la imagen `nombre-alumno/nginx2`. Probaremos con:
 
 ```
-docker run --name=app4nginx2 -p 8082:80 -t nombre-alumno/nginx2
+docker run --name=app4nginx2 -p 8082:80 -t ilenia/nginx2
 ```
 
 ![](./images/4.3/4-3-4.png)
@@ -529,7 +529,7 @@ RUN chmod 666 /usr/share/nginx/html/holamundo3.html
 
 
 
-* `docker run --name=app5nginx3 -d -p 8083:80 nombre-alumno/nginx3`, crear contenedor.
+* `docker run --name=app5nginx3 -d -p 8083:80 ilenia/nginx3`, crear contenedor.
 
 
 ![](./images/4.4/4-4-6.png)
@@ -547,11 +547,11 @@ Ahora vamos a crear un contenedor "hola mundo" y subirlo a Docker Hub.
 
 * Crear carpeta `docker16c`. Entrar en la carpeta.
 
-* Crear fichero Dockerfile de modo que al ejecutar este comando `docker run nombre-alumno/holamundo` se mostrará en pantalla el mensaje siguiente:
+* Crear fichero Dockerfile de modo que al ejecutar este comando `docker run ilenia/holamundo` se mostrará en pantalla el mensaje siguiente:
 ```
 Hola Mundo!
-nombre-del-alumnoXX
-Proyecto dockerXXc
+ilenia16
+Proyecto docker16c
 Fecha actual
 ```
 
