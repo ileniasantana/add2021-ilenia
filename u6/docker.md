@@ -435,9 +435,19 @@ CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
 
 El fichero Dockerfile contiene toda la información necesaria para construir el contenedor, veamos:
 
-* `cd dockerXXa`, entramos al directorio con el Dockerfile.
+* `cd docker16a`, entramos al directorio con el Dockerfile.
 * `docker build -t nombre-alumno/nginx2 .`, construye una nueva imagen a partir del Dockerfile. OJO: el punto final es necesario.
+
+
+![](./images/4.2/4-2-1.png)
+
+
+
+
 * `docker images`, ahora debe aparecer nuestra nueva imagen.
+
+
+![](./images/4.2/4-2-2.png)
 
 ## 4.3 Crear contenedor y comprobar
 
@@ -447,11 +457,30 @@ A continuación vamos a crear un contenedor con el nombre `app4nginx2`, a partir
 docker run --name=app4nginx2 -p 8082:80 -t nombre-alumno/nginx2
 ```
 
+![](./images/4.3/4-3-4.png)
+
+
+
+
 Desde otra terminal:
 * `docker ps`, para comprobar que el contenedor está en ejecución y en escucha por el puerto deseado.
+
+
+![](./images/4.3/4-3-1.png)
 * Comprobar en el navegador:
     * URL `http://localhost:PORTNUMBER`
+
+
+![](./images/4.3/4-3-2.png)
+
+
     * URL `http://localhost:PORTNUMBER/holamundo2.html`
+
+
+
+![](./images/4.3/4-3-3.png)
+
+
 
 Ahora que sabemos usar los ficheros Dockerfile, nos damos cuenta que es más sencillo usar estos ficheros para intercambiar con nuestros compañeros que las herramientas de exportar/importar que usamos anteriormente.
 
@@ -462,11 +491,21 @@ El ejemplo anterior donde creábamos una imagen Docker con Nginx se puede simpli
 > Enlace de interés:
 > * [nginx - Docker Official Images] https://hub.docker.com/_/nginx
 
-* Crea el directorio `dockerXXb`. Entrar al directorio.
+* Crea el directorio `docker16b`. Entrar al directorio.
+
+
+![](./images/4.4/4-4-1.png)
+
+
 * Crear fichero `holamundo3.html` con:
-    * Proyecto: dockerXXb
+    * Proyecto: docker16b
     * Autor: Nombre del alumno
     * Fecha: Fecha actual
+
+
+![](./images/4.4/4-4-2.png)
+
+
 * Crea el siguiente `Dockerfile`
 
 ```
@@ -476,16 +515,38 @@ COPY holamundo3.html /usr/share/nginx/html
 RUN chmod 666 /usr/share/nginx/html/holamundo3.html
 ```
 
-* Poner el el directorio `dockerXXb` los ficheros que se requieran para construir el contenedor.
-* `docker build -t nombre-alumno/nginx3 .`, crear la imagen.
+
+![](./images/4.4/4-4-3.png)
+
+
+
+
+* Poner el el directorio `docker16b` los ficheros que se requieran para construir el contenedor.
+* `docker build -t ilenia/nginx3 .`, crear la imagen.
+
+
+![](./images/4.4/4-4-5.png)
+
+
+
 * `docker run --name=app5nginx3 -d -p 8083:80 nombre-alumno/nginx3`, crear contenedor.
+
+
+![](./images/4.4/4-4-6.png)
+
+
 * Comprobar el acceso a "holamundo3.html".
+
+
+![](./images/4.4/4-4-7.png)
+
 
 # 5. Docker Hub
 
 Ahora vamos a crear un contenedor "hola mundo" y subirlo a Docker Hub.
 
-* Crear carpeta `dockerXXc`. Entrar en la carpeta.
+* Crear carpeta `docker16c`. Entrar en la carpeta.
+
 * Crear fichero Dockerfile de modo que al ejecutar este comando `docker run nombre-alumno/holamundo` se mostrará en pantalla el mensaje siguiente:
 ```
 Hola Mundo!
@@ -494,12 +555,32 @@ Proyecto dockerXXc
 Fecha actual
 ```
 
+![](./images/5/5-2.png)
+
+
+
+![](./images/5/5-3.png)
+
+
+![](./images/5/5-4.png)
 > NOTA: Usaremos la imagen base `busybox` y la instrucción RUN o un script para mostrar mensajes por pantalla.
 
 * Registrarse en Docker Hub.
-* `docker login -u USUARIO-DOCKER`, para abrir la conexión.
-* `docker tag nombre-alumno/holamundo:latest USUARIO-DOCKER/holamundo:version1`, etiquetamos la imagen con "version1".
-* `docker push USUARIO-DOCKER/holamundo:version1`, para subir la imagen (version1) a los repositorios de Docker.
+* `docker login -u ileniasantana(usuario docker)`, para abrir la conexión.
+
+
+![](./images/5/5-6.png)
+
+
+
+* `docker tag ilenia/holamundo:latest ileniasantana(USUARIO-DOCKER)/holamundo:version1`, etiquetamos la imagen con "version1".
+* `docker push ileniasantana (USUARIO-DOCKER)/holamundo:version1`, para subir la imagen (version1) a los repositorios de Docker.
+
+
+![](./images/5/5-7.png)
+
+
+
 
 # 6. Limpiar contenedores e imágenes
 
