@@ -3,11 +3,11 @@
 
 ## 1.1 Preparativos
 
-| Config   | MV1           | MV2          | MV3          |
-| -------- | ------------- | ------------ | ------------ |
-| Hostname | masterXXg     | minionXXg    | minionXXw    |
-| SO       | OpenSUSE      | OpenSUSE     | Windows      |
-| IP       | 172.19.XX.31  | 172.19.XX.32 | 172.19.XX.11 |
+| Config   | MV1           | MV2          |
+| -------- | ------------- | ------------ |
+| Hostname | masterXXg     | minionXXg    |
+| SO       | OpenSUSE      | OpenSUSE     |
+| IP       | 192.168.1.31  | 192.168.1.32 |
 
 
 
@@ -50,12 +50,7 @@ file_roots:
 
 
 * `salt-key -L`, para consultar Minions aceptados por nuestro Máster. Vemos que no hay ninguno todavía.
-```
-Accepted Keys:
-Denied Keys:
-Unaccepted Keys:
-Rejected Keys:
-```
+
 
 ![](./images/2/2-4.png)
 
@@ -116,13 +111,7 @@ Hay que asegurarse de que el cortafuegos permite las conexiones al servicio Salt
 
 Ir a MV1:
 * `salt-key -L`, vemos que el Máster recibe petición del Minion.
-```
-Accepted Keys:
-Denied Keys:
-Unaccepted Keys:
-minionXXg
-Rejected Keys:
-```
+
 
 ![](./images/3.3/3-3.png)
 
@@ -143,20 +132,12 @@ Rejected Keys:
 
 Desde el Máster comprobamos:
 1. Conectividad hacia los Minions.
-```
-# salt '*' test.ping
-minionXXg:
-    True
-```
+
 
 ![](./images/3.4/3-4.png)
 
 2. Versión de Salt instalada en los Minions
-```
-# salt '*' test.version
-minionXXg:
-    3000
-```
+
 
 ![](./images/3.4/3-5.png)
 
@@ -186,13 +167,7 @@ Ir a la MV Máster:
 ![](./images/4.1/4-2.png)
 
 * Crear archivo `/etc/salt/master.d/roots.conf` con el siguiente contenido:
-```
-file_roots:
-  base:
-    - /srv/salt/base
-  devel:
-    - /srv/salt/devel
-```
+
 
 ![](./images/4.1/4-1-3.png)
 
@@ -208,18 +183,6 @@ file_roots:
 
 Los estados de Salt se definen en ficheros SLS.
 * Crear fichero `/srv/salt/base/apache/init.sls`:
-```
-install_apache:
-  pkg.installed:
-    - pkgs:
-      - apache2
-
-apache_service:
-  service.running:
-    - name: apache2
-    - enable: True
-    - require:
-      - install_apache
 
 
 ![](./images/4.2/4-2.png)
@@ -382,13 +345,7 @@ Vamos a crear un estado llamado `users` que nos servirá para crear un grupo y u
 
 * Incluir en el estado "apache" la creación del fichero "holamundo" en el Minion. Dicho fichero se descargará desde el servidor Salt Máster y se copiará en el Minion.
 
-```
 
-holamundo:
-  file.managed:
-    - name: /srv/www/htdocs/holamundo.html
-    - source: salt://files/holamundo.html
-```
 
 ![](./images/5.3/5-3-4.png)
 
