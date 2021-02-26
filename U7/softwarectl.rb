@@ -1,10 +1,9 @@
 #!/usr/bin/env ruby
 
 argument = ARGV[0]
-
 filename = ARGV[1]
 
-
+# Aquí vamos a comprobar si los paquetes definidos en filename, están instalados o no.
 
 def comprobar(packages)
   comp = `whereis #{packages[0]} |grep bin |wc -l`.to_i
@@ -14,6 +13,8 @@ def comprobar(packages)
     puts "#{packages[0]} -> El programa #{packages[0]} está instalado"
   end
 end
+
+# Instalamos o desinstalamos paquetes
 
 def instalar(packages)
   comp = `whereis #{packages[0]} |grep bin |wc -l`.to_i
@@ -37,13 +38,13 @@ def instalar(packages)
   end
 end
 
-# Aquí he definido que si no se pone ningún argumento, aparezca esta ventana para que utilices --help.
+# Aquí he definido que si el argumento esta en blanco, aparezca esta ventana para que utilices --help.
 
 if argument == ()
   puts 'Usa el comando --help para ver las distintas opciones'
 
 
-# Si el argumento es --help que se lea en pantalla estas opciones que podemos ejecutar.
+# Si el argumento es --help que se lea en pantalla estas opciones que podemos ejecutar luego.
 
 elsif argument == '--help'
   puts "Debe usar:
@@ -75,11 +76,13 @@ elsif argument == '--status' and filename != ()
   f_lines = lines.split("\n")
   f_lines.each do |a|
     packages = a.split(":")
-    comprobar(packages) # Aquí defino una llamada a comprobar paquetes, definido arriba.
+    comprobar(packages) # Aquí defino una llamada a comprobar si los paquetes definidos en el archivo FILENAME están instalados o no en el equipo.
   end
 
 # Si el argumento es --run filename, primero comprueba que seamos usuario 'root' y, sino lo somos no se ejecutará ni instalación  ni borrado, si lo somos, se ejecutará la instalación.
-
+	
+# También lee el archivo filename, lo esplitea y, al hacer la llamada a instalar(packages) comprueba si debe instalarlo o borrarlo.
+	
 elsif argument == '--run' and filename != ()
   root = `id -u`.to_i
   if root == 0
